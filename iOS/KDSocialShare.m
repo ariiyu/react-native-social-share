@@ -24,10 +24,15 @@ RCT_EXPORT_MODULE()
      options:(NSDictionary *)options
     callback:(RCTResponseSenderBlock)callback
 {
-  if (![SLComposeViewController isAvailableForServiceType:serviceType]) {
-    callback(@[@"not_available"]);
-    return;
-  }
+    /*
+     Comment out below is for avoiding not_available result for iOS 11.
+     By this commenting out, the result will be "canceled" if the target app is not installed.
+     See: https://github.com/doefler/react-native-social-share/issues/60
+     */
+    //  if (![SLComposeViewController isAvailableForServiceType:serviceType]) {
+    //    callback(@[@"not_available"]);
+    //    return;
+    //  }
 
   SLComposeViewController *composeCtl = [SLComposeViewController composeViewControllerForServiceType:serviceType];
 
